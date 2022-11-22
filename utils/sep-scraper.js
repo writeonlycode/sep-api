@@ -22,7 +22,7 @@ async function fetchAndScrapeTOC(url) {
   const promises = [];
   let i = 0;
 
-  links.slice(0,10).forEach(async (link) => {
+  links.forEach(async (link) => {
     if (link.getAttribute("href")?.includes("entries/")) {
       console.log(`Parsing entry: ${link.getAttribute("href")}`);
       const promise = fetchAndScrapeEntry(link.getAttribute("href"));
