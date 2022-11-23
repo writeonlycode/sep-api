@@ -62,6 +62,7 @@ async function fetchAndScrapeEntry(relativeURL) {
 
   const preambleHTML = entryDocument.querySelector("#preamble").innerHTML;
   const preamble = convert(preambleHTML, {
+    ignoreHref: true,
     preserveNewlines: false,
     wordwrap: false,
   });
