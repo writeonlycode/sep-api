@@ -46,8 +46,7 @@ try {
   console.log("Connected!");
 
   // scrape before starting up the server, if necessary
-  // const resources = await Entry.count();
-  const resources = 0;
+  const resources = await Entry.count();
 
   if (resources === 0) {
     console.log("Scrapping SEP and starting the server...");
