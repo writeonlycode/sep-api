@@ -24,14 +24,14 @@ async function fetchAndScrapeTOC(url) {
       // Scrape entry
       console.log(`Scraping entry: ${links[i].getAttribute("href")}`);
       const entry = await fetchAndScrapeEntry(links[i].getAttribute("href"));
-      console.log(`Scraped entry ${i} of ${links.length}: ${entry.identifier}`);
+      console.log(`Scraped entry ${i + 1} of ${links.length}: ${entry.identifier}`);
 
       // Insert entry into the database
       console.log("Inserting into the database...");
       await Entry.create(entry);
       console.log("Inserted!");
     } else {
-      console.log(`Link ${i} ins't an entry. Skipping...`);
+      console.log(`Link ${i + 1} ins't an entry. Skipping...`);
     }
   }
   console.log("Finished scraping SEP!");
