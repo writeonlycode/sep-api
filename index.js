@@ -46,27 +46,18 @@ try {
   console.log("Connected!");
 
   // scrape before starting up the server, if necessary
-  const resources = await Entry.count();
+  // const resources = await Entry.count();
+  const resources = 0;
 
   if (resources === 0) {
-    console.log("Scrapping SEP before starting the server...");
-    const result = await scrapeSEP();
-    console.log(
-      "SEP scrapped successfully! Inserting entries into the database..."
-    );
-    await Entry.insertMany(result);
-    console.log("Entries inserted successfully into the database!");
+    console.log("Scrapping SEP and starting the server...");
+    scrapeSEP();
   }
 
   // schedule a cron job to scrap the SEP website once a week
-  cron.schedule("0 0 * * 0", async () => {
+  cron.schedule("0 0 * * 0", () => {
     console.log("Scrapping SEP...");
-    const result = await scrapeSEP();
-    console.log(
-      "SEP scrapped successfully! Inserting entries into the database..."
-    );
-    await Entry.insertMany(result);
-    console.log("Entries inserted successfully into the database!");
+    scrapeSEP();
   });
 
   // start the server

@@ -8,7 +8,7 @@ import connect from "../db/connect.js";
 
 export async function scrapeSEP() {
   const url = "https://plato.stanford.edu/contents.html";
-  return await fetchAndScrapeTOC(url);
+  return fetchAndScrapeTOC(url);
 }
 
 async function fetchAndScrapeTOC(url) {
@@ -17,29 +17,24 @@ async function fetchAndScrapeTOC(url) {
 
   const dom = new JSDOM(response.data);
   const content = dom.window.document.getElementById("content");
-
   const links = Array.from(content.querySelectorAll("a"));
-  const promises = [];
-  let i = 0;
 
-  links.forEach(async (link) => {
-    if (link.getAttribute("href")?.includes("entries/")) {
-      console.log(`Parsing entry: ${link.getAttribute("href")}`);
-      const promise = fetchAndScrapeEntry(link.getAttribute("href"));
+  for (let i = 0; i < links.length; i++) {
+    if (links[i].getAttribute("href")?.includes("entries/")) {
+      // Scrape entry
+      console.log(`Scraping entry: ${links[i].getAttribute("href")}`);
+      const entry = await fetchAndScrapeEntry(links[i].getAttribute("href"));
+      console.log(`Scraped entry ${i} of ${links.length}: ${entry.identifier}`);
 
-      promises.push(
-        promise.then((e) => {
-          console.log(
-            `Parsed entry ${i++} of ${links.length}: ${e.identifier}`
-          );
-
-          return e;
-        })
-      );
+      // Insert entry into the database
+      console.log("Inserting into the database...");
+      await Entry.create(entry);
+      console.log("Inserted!");
+    } else {
+      console.log(`Link ${i} ins't an entry. Skipping...`);
     }
-  });
-
-  return Promise.all(promises);
+  }
+  console.log("Finished scraping SEP!");
 }
 
 async function fetchAndScrapeEntry(relativeURL) {
