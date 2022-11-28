@@ -1,6 +1,9 @@
 import Entry from "../models/entry.js";
 
 export async function index(req, res) {
+  // filter
+  // limit
+  // pagination
   const resources = await Entry.find();
   return res.status(200).json(resources);
 };
