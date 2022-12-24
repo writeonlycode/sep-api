@@ -4,8 +4,12 @@ export async function index(req, res) {
   const { title, author } = req.query;
   const queryObject = {};
 
-  if ( title ) { queryObject.title = title; }
-  if ( author ) { queryObject.author = author; }
+  if (title) {
+    queryObject.title = { $regex: title, $options: "i" };
+  }
+  if (author) {
+    queryObject.author = { $regex: author, $options: "i" };
+  }
 
   const resources = await Entry.find(queryObject).limit(10);
 
