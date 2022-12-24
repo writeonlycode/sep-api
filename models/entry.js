@@ -5,6 +5,7 @@ const EntrySchema = new Schema({
     type: String,
     required: [true, "Identifier can't be empty."],
     trim: true,
+    unique: true,
   },
   title: {
     type: String,
@@ -24,6 +25,8 @@ const EntrySchema = new Schema({
     required: [true, "First published can't be empty."]
   },
   preamble: String,
+  // preambleHTML: { type: String }
+  // contentHTML: { type: String }
   // bibliography: {
   //   type: [String],
   //   required: [true, "Bibliography can't be empty."]

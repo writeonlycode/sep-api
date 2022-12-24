@@ -2,16 +2,33 @@
 
 ## `GET` `/api/v1/entries`
 
-Returns a list with all the entries in the database.
+Returns a list of entries.
 
 ### Parameters
 
-- name: description
+| Parameter | Description                          | Type     |
+| ---       | ---                                  | ---      |
+| `title`   | Filter on the title of the entries.  | `string` |
+| `author`  | Filter on the author of the entries. | `string` |
 
-### Example Request
+### Example Requests
+
+All entries:
 
 ```bash
 curl $BASE_URL/api/v1/entries/
+```
+
+All entries with title "Abduction":
+
+```bash
+curl $BASE_URL/api/v1/entries/?title=Abduction
+```
+
+All entries with author "Douven, Igor":
+
+```bash
+curl $BASE_URL/api/v1/entries/?author=Douven,%20Igor
 ```
 
 ### Example Response

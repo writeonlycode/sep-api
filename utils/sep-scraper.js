@@ -31,7 +31,7 @@ async function fetchAndScrapeTOC(url) {
       await Entry.create(entry);
       console.log("Inserted!");
     } else {
-      console.log(`Link ${i + 1} ins't an entry. Skipping...`);
+      console.log(`Link ${i + 1} isn't an entry. Skipping...`);
     }
   }
   console.log("Finished scraping SEP!");
