@@ -1,7 +1,8 @@
 import Entry from "../models/entry.js";
 
 export async function index(req, res) {
-  const { title, author } = req.query;
+  const { title, author, sort } = req.query;
+
   const queryObject = {};
 
   if (title) {
@@ -11,9 +12,17 @@ export async function index(req, res) {
     queryObject.author = { $regex: author, $options: "i" };
   }
 
-  const resources = await Entry.find(queryObject).limit(10);
+  let resources = Entry.find(queryObject);
 
-  return res.status(200).json(resources);
+  if ( sort ) {
+    resources = resources.sort(sort);
+  }
+
+  // resources.limit(10);
+
+  const entries = await resources;
+
+  return res.status(200).json(entries);
 }
 
 export async function show(req, res) {

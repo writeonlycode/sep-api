@@ -10,6 +10,7 @@ Returns a list of entries.
 | ---       | ---                                  | ---      |
 | `title`   | Filter on the title of the entries.  | `string` |
 | `author`  | Filter on the author of the entries. | `string` |
+| `sort`    | Sort on given field.                 | `string` |
 
 ### Example Requests
 
@@ -29,6 +30,18 @@ All entries with author "Douven, Igor":
 
 ```bash
 curl $BASE_URL/api/v1/entries/?author=Douven,%20Igor
+```
+
+All entries sorted by author in descending order:
+
+```bash
+curl $BASE_URL/api/v1/entries/?sort=author
+```
+
+All entries sorted by author in ascending order:
+
+```bash
+curl $BASE_URL/api/v1/entries/?sort=-author
 ```
 
 ### Example Response
