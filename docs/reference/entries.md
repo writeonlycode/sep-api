@@ -11,7 +11,7 @@ Returns a list with all the entries in the database.
 ### Example Request
 
 ```bash
-curl https://sep-api-production.up.railway.app/api/v1/entries/
+curl $BASE_URL/api/v1/entries/
 ```
 
 ### Example Response
