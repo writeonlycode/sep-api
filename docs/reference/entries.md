@@ -50,6 +50,13 @@ The first 10 entries:
 curl $BASE_URL/api/v1/entries?limit=10
 ```
 
+The 3rd page, with 10 entries per page (i.e. skips the firs 20 entries entries
+and returns the next 10 entries):
+
+```bash
+curl $BASE_URL/api/v1/entries?limit=10&page=3
+```
+
 ### Example Response
 
 ```json

@@ -1,24 +1,31 @@
 import Entry from "../models/entry.js";
 
 export async function index(req, res) {
-  const { title, author, sort, limit } = req.query;
+  const { title, author, sort, limit, page } = req.query;
 
-  const queryObject = {};
+  const filterObject = {};
 
   if (title) {
-    queryObject.title = { $regex: title, $options: "i" };
+    filterObject.title = { $regex: title, $options: "i" };
   }
+
   if (author) {
-    queryObject.author = { $regex: author, $options: "i" };
+    filterObject.author = { $regex: author, $options: "i" };
   }
 
-  let resources = Entry.find(queryObject);
+  const optionsObject = {};
 
-  if ( sort ) {
+  if (page && limit) {
+    optionsObject.skip = (page - 1) * limit;
+  }
+
+  let resources = Entry.find(filterObject, null, optionsObject);
+
+  if (sort) {
     resources = resources.sort(sort);
   }
 
-  if ( limit ) {
+  if (limit) {
     resources.limit(limit);
   }
 
