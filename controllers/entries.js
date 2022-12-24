@@ -1,7 +1,7 @@
 import Entry from "../models/entry.js";
 
 export async function index(req, res) {
-  const { title, author, sort, limit, page } = req.query;
+  const { title, author, sort, limit, page, fields } = req.query;
 
   const filterObject = {};
 
@@ -27,6 +27,10 @@ export async function index(req, res) {
 
   if (limit) {
     resources.limit(limit);
+  }
+
+  if (fields) {
+    resources.select(fields);
   }
 
   const entries = await resources;

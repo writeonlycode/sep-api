@@ -12,6 +12,8 @@ Returns a list of entries.
 | `author`  | Filter on the author of the entries. | `string` |
 | `sort`    | Sort on given field.                 | `string` |
 | `limit`   | Limits the number of results.        | `number` |
+| `page`    | The page to be returned. The limit option must be present for this to work.  | `number` |
+| `fields`  | Space separated list of fields to show.  | `string` |
 
 ### Example Requests
 
@@ -46,6 +48,7 @@ curl $BASE_URL/api/v1/entries?sort=-author
 ```
 
 The first 10 entries:
+
 ```bash
 curl $BASE_URL/api/v1/entries?limit=10
 ```
@@ -55,6 +58,12 @@ and returns the next 10 entries):
 
 ```bash
 curl $BASE_URL/api/v1/entries?limit=10&page=3
+```
+
+Returns only the field `title`:
+
+```bash
+curl $BASE_URL/api/v1/entries?fields=title
 ```
 
 ### Example Response
