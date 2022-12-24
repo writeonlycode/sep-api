@@ -11,37 +11,43 @@ Returns a list of entries.
 | `title`   | Filter on the title of the entries.  | `string` |
 | `author`  | Filter on the author of the entries. | `string` |
 | `sort`    | Sort on given field.                 | `string` |
+| `limit`   | Limits the number of results.        | `number` |
 
 ### Example Requests
 
 All entries:
 
 ```bash
-curl $BASE_URL/api/v1/entries/
+curl $BASE_URL/api/v1/entries
 ```
 
 All entries with title "Abduction":
 
 ```bash
-curl $BASE_URL/api/v1/entries/?title=Abduction
+curl $BASE_URL/api/v1/entries?title=Abduction
 ```
 
 All entries with author "Douven, Igor":
 
 ```bash
-curl $BASE_URL/api/v1/entries/?author=Douven,%20Igor
+curl $BASE_URL/api/v1/entries?author=Douven,%20Igor
 ```
 
 All entries sorted by author in descending order:
 
 ```bash
-curl $BASE_URL/api/v1/entries/?sort=author
+curl $BASE_URL/api/v1/entries?sort=author
 ```
 
 All entries sorted by author in ascending order:
 
 ```bash
-curl $BASE_URL/api/v1/entries/?sort=-author
+curl $BASE_URL/api/v1/entries?sort=-author
+```
+
+The first 10 entries:
+```bash
+curl $BASE_URL/api/v1/entries?limit=10
 ```
 
 ### Example Response
