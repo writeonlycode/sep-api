@@ -22,7 +22,7 @@ export async function index(req, res) {
   let resources = Entry.find(filterObject, null, optionsObject);
 
   if (sort) {
-    resources = resources.sort(sort);
+    resources = resources.sort(sort.split(',').join(' '));
   }
 
   if (limit) {
@@ -30,7 +30,7 @@ export async function index(req, res) {
   }
 
   if (fields) {
-    resources.select(fields);
+    resources.select(fields.split(',').join(' '));
   }
 
   const entries = await resources;
