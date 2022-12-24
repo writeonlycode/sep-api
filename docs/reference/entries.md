@@ -10,10 +10,10 @@ Returns a list of entries.
 | ---       | ---                                  | ---      |
 | `title`   | Filter on the title of the entries.  | `string` |
 | `author`  | Filter on the author of the entries. | `string` |
-| `sort`    | Sort on given field.                 | `string` |
+| `sort`    | Comma separated list of fields to use for sort. Use `field_name` to sort in ascending order and `-field_name` to sort in descending order.  | `string` |
 | `limit`   | Limits the number of results.        | `number` |
 | `page`    | The page to be returned. The limit option must be present for this to work.  | `number` |
-| `fields`  | Space separated list of fields to show.  | `string` |
+| `fields`  | Comma separated list of fields to show.  | `string` |
 
 ### Example Requests
 
@@ -100,12 +100,14 @@ Returns the entry with the given identifier.
 
 ### Parameters
 
-- `identifier`: The identifier of the entry to be returned.
+| Parameter     | Description                                 | Type     |
+| ---           | ---                                         | ---      |
+| `:identifier` | The identifier of the entry to be returned. | `string` |
 
 ### Example Request
 
 ```bash
-curl https://sep-api-production.up.railway.app/api/v1/entries/abduction
+curl $BASE_URL/api/v1/entries/abduction
 ```
 
 ### Example Response
