@@ -6,14 +6,16 @@ Returns a list of entries.
 
 ### Parameters
 
-| Parameter | Description                          | Type     |
-| ---       | ---                                  | ---      |
-| `title`   | Filter on the title of the entries.  | `string` |
+| Parameter | Description                         | Type     |
+| ---       | ---                                 | ---      |
+| `title`   | Filter on the title of the entries. | `string` |
 | `author`  | Filter on the author of the entries. | `string` |
 | `sort`    | Comma separated list of fields to use for sort. Use `field_name` to sort in ascending order and `-field_name` to sort in descending order.  | `string` |
-| `limit`   | Limits the number of results.        | `number` |
-| `page`    | The page to be returned. The limit option must be present for this to work.  | `number` |
-| `fields`  | Comma separated list of fields to show.  | `string` |
+| `limit`   | Limits the number of results. | `number` |
+| `page`    | The page to be returned. The limit option must be present for this to work. | `number` |
+| `fields`  | Comma separated list of fields to show. | `string` |
+| `firstPublished` | Can be a string like `firstPublished=2022-12-12` or a nested object like `firstPublished[$gt]=2022-12-12`. | `string` or `object` |
+| `lastUpdated` | Can be a string like `lastUpdated=2022-12-12` or a nested object like `lastUpdated[$gt]=2022-12-12`. | `string` or `object` |
 
 ### Example Requests
 
@@ -65,6 +67,36 @@ Returns only the field `title`:
 ```bash
 curl $BASE_URL/api/v1/entries?fields=title
 ```
+
+All entries published on 2022-12-12:
+
+```bash
+curl $BASE_URL/api/v1/entries?firstPublished=2022-12-12
+```
+
+All entries published since 2022-12-12:
+
+```bash
+curl $BASE_URL/api/v1/entries?firstPublished[$gte]=2022-12-12
+```
+
+The possible operators are: `$gte` for greater than or equal, `$gt` for greater
+than, `$lte` for less than or equal, and `$lt` for less than.
+
+All entries last updated on 2022-12-12:
+
+```bash
+curl $BASE_URL/api/v1/entries?lastUpdated=2022-12-12
+```
+
+All entries last updated since 2022-12-12:
+
+```bash
+curl $BASE_URL/api/v1/entries?lastUpdated[$gte]=2022-12-12
+```
+
+The possible operators are: `$gte` for greater than or equal, `$gt` for greater
+than, `$lte` for less than or equal, and `$lt` for less than.
 
 ### Example Response
 

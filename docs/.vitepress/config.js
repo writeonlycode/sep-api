@@ -3,6 +3,7 @@ export default {
   description: "An unofficial API for the Stanford Encyclopedia of Philosophy.",
   base: "/sep-api/",
   cleanUrls: 'with-subfolders',
+
   themeConfig: {
     nav: [
       { text: 'API Reference', link: '/reference/what-is-the-sep-api' },
@@ -26,4 +27,10 @@ export default {
       copyright: 'Copyright © 2022-present Iago Bozza'
     }
   },
+
+  // transformPageData(pageData) {
+  //   return {
+  //     apiBaseUrl: "https://s-xhpd.onrender.com/api/v1/",
+  //   }
+  // }
 };
