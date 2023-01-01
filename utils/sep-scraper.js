@@ -4,7 +4,6 @@ import { JSDOM } from "jsdom";
 import { convert } from "html-to-text";
 
 import Entry from "../models/entry.js";
-import connect from "../db/connect.js";
 
 export async function scrapeSEP() {
   const url = "https://plato.stanford.edu/contents.html";
@@ -24,12 +23,16 @@ async function fetchAndScrapeTOC(url) {
       // Scrape entry
       console.log(`Scraping entry: ${links[i].getAttribute("href")}`);
       const entry = await fetchAndScrapeEntry(links[i].getAttribute("href"));
-      console.log(`Scraped entry ${i + 1} of ${links.length}: ${entry.identifier}`);
+      console.log(
+        `Scraped entry ${i + 1} of ${links.length}: ${entry.identifier}`
+      );
 
       // Insert entry into the database
-      console.log("Inserting into the database...");
-      await Entry.create(entry);
-      console.log("Inserted!");
+      console.log("Updating the database...");
+      await Entry.findOneAndUpdate({ identifier: entry.identifier }, entry, {
+        upsert: true,
+      });
+      console.log("Updated!");
     } else {
       console.log(`Link ${i + 1} isn't an entry. Skipping...`);
     }
