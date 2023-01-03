@@ -126,7 +126,7 @@ than, `$lte` for less than or equal, and `$lt` for less than.
 ]
 ```
 
-## `GET` `/api/v1/entries/:identifier`
+## `GET` `/api/v1/entries/:entry`
 
 Returns the entry with the given identifier.
 
@@ -134,7 +134,7 @@ Returns the entry with the given identifier.
 
 | Parameter     | Description                                 | Type     |
 | ---           | ---                                         | ---      |
-| `:identifier` | The identifier of the entry to be returned. | `string` |
+| `:entry` | The identifier of the entry to be returned. | `string` |
 
 ### Example Request
 
