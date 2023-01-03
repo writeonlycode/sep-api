@@ -1,10 +1,10 @@
 import Entry from "../models/entry.js";
 
 export async function index(req, res) {
-  const { title, author, sort, limit, page, fields, firstPublished } =
+  const { title, author, sort, limit, page, fields, firstPublished, lastUpdated } =
     req.query;
 
-  const filterObject = {};
+  const filterObject = { archive: "undefined" };
 
   if (title) {
     filterObject.title = { $regex: title, $options: "i" };

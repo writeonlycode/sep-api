@@ -10,6 +10,7 @@ import rateLimit from "express-rate-limit";
 
 import connect from "./db/connect.js";
 import entries from "./routes/api/v1/entries.js";
+import archives from "./routes/api/v1/archives.js";
 
 import errorHandlerMiddleware from "./middleware/error-handler.js";
 import notFoundMiddleware from "./middleware/not-found.js";
@@ -35,6 +36,7 @@ app.use(
 
 // Routes
 app.use("/api/v1/entries", entries);
+app.use("/api/v1/archives", archives);
 
 // Error Middlewares
 app.use(notFoundMiddleware);

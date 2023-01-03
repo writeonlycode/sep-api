@@ -5,7 +5,6 @@ const EntrySchema = new Schema({
     type: String,
     required: [true, "Identifier can't be empty."],
     trim: true,
-    unique: true,
   },
   title: {
     type: String,
@@ -32,6 +31,10 @@ const EntrySchema = new Schema({
   //   required: [true, "Bibliography can't be empty."]
   // },
   // relatedEntries: [String],
+  archive: {
+    type: String,
+    required: [true, "Archive can't be empty."]
+  }
 });
 
 export default model("Entry", EntrySchema);
